@@ -1,4 +1,4 @@
-import buildNumber from './buildNumber';
+import buildNumber from '../buildNumber';
 
 type First = (input: string) => number;
 
