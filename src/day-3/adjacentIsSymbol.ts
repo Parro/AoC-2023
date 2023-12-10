@@ -2,9 +2,15 @@ type AdjacentIsSymbol = (args: {
   matrix: Array<Array<string>>;
   x: number;
   y: number;
+  checkFunction: (matrixValue: string, x: number, y: number) => boolean;
 }) => boolean;
 
-const adjacentIsSymbol: AdjacentIsSymbol = ({ matrix, x, y }) => {
+const adjacentIsSymbol: AdjacentIsSymbol = ({
+  matrix,
+  x,
+  y,
+  checkFunction,
+}) => {
   const adjacentPositions = [
     [y - 1, x],
     [y - 1, x - 1],
@@ -22,7 +28,7 @@ const adjacentIsSymbol: AdjacentIsSymbol = ({ matrix, x, y }) => {
       return false;
     }
 
-    if (matrix[y][x] !== '.' && isNaN(Number(matrix[y][x]))) {
+    if (checkFunction(matrix[y][x], x, y)) {
       return true;
     }
   });

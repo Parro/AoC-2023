@@ -22,12 +22,12 @@ const first: First = (input) => {
   for (let columnIndex = 0; columnIndex < matrix.length; columnIndex++) {
     for (let rowIndex = 0; rowIndex < matrix[columnIndex].length; rowIndex++) {
       // Try to build part number with series of digits
-        const partNumber = buildNumber({ matrix, x: rowIndex, y: columnIndex });
-        if (partNumber !== null) {
-          partNumbers.push(partNumber);
-          // Move the index after the built number
-          rowIndex += `${partNumber}`.length;
-        // }
+      const partNumber = buildNumber({ matrix, x: rowIndex, y: columnIndex });
+
+      if (partNumber !== null && partNumber.hasAdjacentSymbol === true) {
+        partNumbers.push(partNumber.number);
+        // Move the index after the built number
+        rowIndex += `${partNumber.number}`.length;
       }
     }
   }

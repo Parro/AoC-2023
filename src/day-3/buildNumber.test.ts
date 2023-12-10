@@ -1,11 +1,10 @@
 import { describe, it } from 'node:test';
 import { strict as assert } from 'node:assert';
 
-
 import buildNumber from './buildNumber';
 
 describe('Day 3 buildNumber tests', () => {
-  it('should build a number from a series of digits if one of the digit has and adjacent symbol', () => {
+  it('should build a number from a series of digits with one of the digit has an adjacent symbol', () => {
     const matrix = [
       ['4', '6', '7', '.', '.', '1', '1', '4', '.', '.'],
       ['.', '.', '.', '*', '.', '.', '.', '.', '.', '.'],
@@ -19,16 +18,24 @@ describe('Day 3 buildNumber tests', () => {
       ['.', '6', '6', '4', '.', '5', '9', '8', '.', '.'],
     ];
 
-    const x = 0;
-    const y = 0;
+    const x = 6;
+    const y = 2;
 
-    const expectedOutput = 467;
+    const expectedOutput = {
+      number: 633,
+      coordinates: [
+        [6, 2],
+        [7, 2],
+        [8, 2],
+      ],
+      hasAdjacentSymbol:true
+    };
     const output = buildNumber({ matrix, x, y });
 
-    assert.strictEqual(output, expectedOutput);
+    assert.deepEqual(output, expectedOutput);
   });
 
-  it('should return null because the series of digits if one of the digit has no adjacent symbol', () => {
+  it('should return null because the series of digits with none of the digit has no adjacent symbol', () => {
     const matrix = [
       ['4', '6', '7', '.', '.', '1', '1', '4', '.', '.'],
       ['.', '.', '.', '*', '.', '.', '.', '.', '.', '.'],
@@ -42,12 +49,19 @@ describe('Day 3 buildNumber tests', () => {
       ['.', '6', '6', '4', '.', '5', '9', '8', '.', '.'],
     ];
 
-    const x = 8;
+    const x = 7;
     const y = 5;
 
-    const expectedOutput = null;
+    const expectedOutput = {
+      number: 58,
+      coordinates: [
+        [7, 5],
+        [8, 5]
+      ],
+      hasAdjacentSymbol:false
+    };
     const output = buildNumber({ matrix, x, y });
 
-    assert.strictEqual(output, expectedOutput);
+    assert.deepEqual(output, expectedOutput);
   });
 });
