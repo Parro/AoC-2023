@@ -1,9 +1,9 @@
 import { describe, it } from 'node:test';
 import { strict as assert } from 'node:assert';
 
-import first from './first';
+import second from './second';
 
-describe('Day 4 first exercise tests', () => {
+describe('Day 3 second exercise tests', () => {
   it('should sum all winning number in each row', () => {
     const input = `Card   1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
     Card   2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
@@ -12,9 +12,9 @@ describe('Day 4 first exercise tests', () => {
     Card   5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
     Card   6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11`;
 
-    const expectedOutput = 13;
+    const expectedOutput = 30;
 
-    const output = first(input);
+    const output = second(input);
 
     assert.strictEqual(output, expectedOutput);
   });
