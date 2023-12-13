@@ -1,27 +1,57 @@
-type WinningHands = (hand: string) => number;
+type WinningHands = (hand: string, useJolly?: boolean) => number;
 
-const winningHands: WinningHands = (hand) => {
+const winningHands: WinningHands = (hand, useJolly = false) => {
   const cards = hand.split('');
+  // console.log('🚀 ~ file: winningHands.ts:5 ~ cards:', cards);
 
-  const charCount = cards.reduce<{ [key: string]: number }>((acc, char) => {
+  // Count the occurrences of card in hand
+  const cardsCount = cards.reduce<{ [key: string]: number }>((acc, char) => {
     if (acc[char] === undefined) {
       acc[char] = 1;
-    } else {
-      acc[char] += 1;
+      return acc;
     }
+    acc[char] += 1;
+
     return acc;
   }, {});
-  const charCountSort = Object.entries(charCount)
-    .map(([char, count]) => [char, count])
-    .sort((a, b) => {
-      if (a[1] > b[1]) {
-        return -1;
+
+  // Sort card cont from more to less
+  const charCountSortArray: [string, number][] = Object.entries(cardsCount).map(
+    ([char, count]) => [char, count]
+  );
+
+  let charCountSort = charCountSortArray.sort((a, b) => {
+    if (a[1] > b[1]) {
+      return -1;
+    }
+    if (a[1] < b[1]) {
+      return 1;
+    }
+    return 0;
+  });
+  // console.log('🚀 ~ file: winningHands.ts:31 ~ charCountSort:', charCountSort);
+
+  // If J is used as jolly increase the count of the card with more count
+  if (useJolly === true) {
+    if (cardsCount.J !== undefined) {
+      // Already five J
+      if (!(charCountSort[0][0] === 'J' && charCountSort.length === 1)) {
+        // J is the highest card so go for the second
+        if (charCountSort[0][0] !== 'J') {
+          charCountSort[0][1] += cardsCount.J;
+        } else if (charCountSort[1][0] !== 'J') {
+          charCountSort[1][1] += cardsCount.J;
+        } else if (charCountSort[2][0] !== 'J') {
+          charCountSort[2][1] += cardsCount.J;
+        } else if (charCountSort[3][0] !== 'J') {
+          charCountSort[3][1] += cardsCount.J;
+        }
+        charCountSort = charCountSort.filter((count) => count[0] !== 'J');
       }
-      if (a[1] < b[1]) {
-        return 1;
-      }
-      return 0;
-    });
+    }
+  }
+
+  // Rank based on game rule
 
   // Five of a kind
   if (charCountSort[0][1] === 5) {

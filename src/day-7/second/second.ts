@@ -1,13 +1,12 @@
 import higherCardCompare from '../higherCardCompare';
 import winningHands from '../winningHands';
 
-type First = (input: string) => number;
+type Second = (input: string) => number;
 
 const cardOrder = [
   'A',
   'K',
   'Q',
-  'J',
   'T',
   '9',
   '8',
@@ -17,22 +16,30 @@ const cardOrder = [
   '4',
   '3',
   '2',
+  'J',
 ];
 
-const first: First = (input) => {
+const second: Second = (input) => {
   const rows = input.split('\n');
 
+  // Get hands
   const hands = rows.map((row) => row.split(' '));
-  // console.log('🚀 ~ file: first.ts:7 ~ hands:', hands);
+  // console.log('🚀 ~ file: second.ts:7 ~ hands:', hands);
 
-  const rankedHands = hands.sort((a, b) => {
-    if (winningHands(a[0]) > winningHands(b[0])) {
+  // Calculate rank of winning hand
+  const winingHandValues: [string, string, number][] = hands.map((hand) => {
+    return [hand[0], hand[1], winningHands(hand[0], true)];
+  });
+
+  // Sort hands by rank
+  const rankedHands = winingHandValues.sort((a, b) => {
+    if (a[2] > b[2]) {
       return -1;
     }
-    if (winningHands(b[0]) > winningHands(a[0])) {
+    if (b[2] > a[2]) {
       return 1;
     }
-    if (winningHands(a[0]) === winningHands(b[0])) {
+    if (a[2] === b[2]) {
       return higherCardCompare({
         cardOrder,
         firstHand: a[0].split(''),
@@ -41,11 +48,8 @@ const first: First = (input) => {
     }
     return 0;
   });
-  // console.log(
-  //   '🚀 ~ file: first.ts:24 ~ rankedHands ~ rankedHands:',
-  //   rankedHands
-  // );
 
+  // Multiply rank per bid and sum
   return rankedHands.reduce<number>((acc, rankedHand, rank) => {
     const [, bid] = rankedHand;
     acc += Number(bid) * (rank + 1);
@@ -54,4 +58,4 @@ const first: First = (input) => {
   }, 0);
 };
 
-export default first;
+export default second;

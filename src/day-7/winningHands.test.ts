@@ -57,7 +57,7 @@ describe('Day 7 winningHands tests', () => {
 
     assert.strictEqual(output, expectedOutput);
   });
-  
+
   it("should return 7 because the hand has all cards' labels are distinct", () => {
     const hand = '23456';
     const expectedOutput = 7;
@@ -66,4 +66,13 @@ describe('Day 7 winningHands tests', () => {
 
     assert.strictEqual(output, expectedOutput);
   });
+});
+
+it('should return 3 because the hand has has two cards share one label but another is a J', () => {
+  const hand = 'AA9J9';
+  const expectedOutput = 3;
+
+  const output = winningHands(hand, true);
+
+  assert.strictEqual(output, expectedOutput);
 });
