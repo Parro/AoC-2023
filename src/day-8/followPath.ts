@@ -22,7 +22,7 @@ const followPath: FollowPath = ({
 
     steps++;
 
-    if (nextStep === 'ZZZ') {
+    if (nextStep[2] === 'Z') {
       found = true;
       break;
     }

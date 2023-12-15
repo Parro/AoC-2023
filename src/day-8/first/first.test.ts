@@ -4,7 +4,7 @@ import { strict as assert } from 'node:assert';
 import first from './first';
 
 describe('Day 8 first exercise tests', () => {
-  it('should find the minimum steps to reach ZZZ', () => {
+  it('should find the minimum steps to go from AAA to ZZZ', () => {
     const input = `LLR
 
 AAA = (BBB, BBB)
