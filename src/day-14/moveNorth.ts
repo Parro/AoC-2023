@@ -1,32 +1,32 @@
-type MoveNorth = (input: Array<string>) => Array<string>;
+type MoveNorth = (input: string[][]) => string[][];
 
 const moveNorth: MoveNorth = (input) => {
   let hasSwapped = false;
 
-  const movedRow = [];
+  const movedColumn = [];
   for (let position = 0; position < input.length; position++) {
-    const element = input[position];
+    const element = input[position][0];
 
     // If current element is a rock and the before is empty, swap them and mark as hasSwapped
     if (
-      movedRow[position - 1] !== undefined &&
+      movedColumn[position - 1] !== undefined &&
       element === 'O' &&
-      input[position - 1] === '.'
+      input[position - 1][0] === '.'
     ) {
-      movedRow[position - 1] = 'O';
-      movedRow.push('.');
+      movedColumn[position - 1][0] = 'O';
+      movedColumn.push(['.']);
       hasSwapped = true;
     } else {
-      movedRow.push(element);
+      movedColumn.push([element]);
     }
   }
 
   // Recall teh function until there has been no swap
   if (hasSwapped === true) {
-    return moveNorth(movedRow);
+    return moveNorth(movedColumn);
   }
 
-  return movedRow;
+  return movedColumn;
 };
 
 export default moveNorth;

@@ -1,5 +1,4 @@
-import moveNorth from '../moveLeft';
-import transposeMatrix from '../transposeMatrix';
+import moveNorth from '../moveNorth';
 
 type First = (input: string) => number;
 
@@ -19,17 +18,28 @@ const first: First = (input) => {
   }, []);
   // console.log('🚀 ~ file: first.ts:17 ~ matrix ~ matrix:', matrix);
 
-  // Transpose matrix to turn columns in rows
-  const transposedMatrix = transposeMatrix(matrix);
+  const tiltedMatrix: string[][] = [];
+  for (let columnIndex = 0; columnIndex < matrix[0].length; columnIndex++) {
+    // Extract single column
+    const column: string[][] = [];
+    for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
+      if (column[rowIndex] === undefined) {
+        column.push([]);
+      }
+      column[rowIndex].push(matrix[rowIndex][columnIndex]);
+    }
 
-  // Move the rocks
-  const tiltedTransposedMatrix = transposedMatrix.reduce<string[][]>(
-    (acc, row) => [...acc, moveNorth(row)],
-    []
-  );
+    // Move rocks in column to the north
+    const newColumn = moveNorth(column);
 
-  // Re transpose the tilted matrix to get correct order
-  const tiltedMatrix = transposeMatrix(tiltedTransposedMatrix);
+    // Add moved column to position rowIndex in tilted matrix
+    for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
+      if (tiltedMatrix[rowIndex] === undefined) {
+        tiltedMatrix.push([]);
+      }
+      tiltedMatrix[rowIndex].push(newColumn[rowIndex][0]);
+    }
+  }
 
   // Calculate total load count ing rocks and multiplying per row load
   return tiltedMatrix.reduce<number>((tot, row, rowIndex) => {

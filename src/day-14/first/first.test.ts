@@ -4,7 +4,7 @@ import { strict as assert } from 'node:assert';
 import first from './first';
 
 describe('Day 14 first exercise tests', () => {
-  it('should multiply the bid of each hand with the rank', () => {
+  it('should move the rocks to the top of the panel', () => {
     const input = `O....#....
 O.OO#....#
 .....##...
