@@ -12,11 +12,11 @@ const moveSouth: MoveSouth = (input) => {
       element === 'O' &&
       input[position + 1][0] === '.'
     ) {
-      if(movedColumn[position + 1]===undefined){
-        movedColumn[position + 1]=[]
+      if (movedColumn[position + 1] === undefined) {
+        movedColumn[position + 1] = [];
       }
-      if(movedColumn[position ]===undefined){
-        movedColumn[position ]=[]
+      if (movedColumn[position] === undefined) {
+        movedColumn[position] = [];
       }
       movedColumn[position + 1][0] = 'O';
       movedColumn[position][0] = '.';

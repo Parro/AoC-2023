@@ -14,7 +14,7 @@ const second: Second = (input) => {
       .split(';')
       .flatMap((gameExtraction) => gameExtraction.split(','));
 
-      // Get the fewer number of balls per color to make the game possible
+    // Get the fewer number of balls per color to make the game possible
     const fewerBallsPerColor = ballsExtractions.reduce<{
       [key: string]: number;
     }>((acc, ballsExtraction) => {

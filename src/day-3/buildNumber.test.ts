@@ -28,7 +28,7 @@ describe('Day 3 buildNumber tests', () => {
         [7, 2],
         [8, 2],
       ],
-      hasAdjacentSymbol:true
+      hasAdjacentSymbol: true,
     };
     const output = buildNumber({ matrix, x, y });
 
@@ -56,9 +56,9 @@ describe('Day 3 buildNumber tests', () => {
       number: 58,
       coordinates: [
         [7, 5],
-        [8, 5]
+        [8, 5],
       ],
-      hasAdjacentSymbol:false
+      hasAdjacentSymbol: false,
     };
     const output = buildNumber({ matrix, x, y });
 

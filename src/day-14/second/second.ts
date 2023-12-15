@@ -26,7 +26,11 @@ const second: second = (input) => {
 
   for (let cycleNumber = 0; cycleNumber < cycle; cycleNumber++) {
     const tiltedMatrixToNorth: string[][] = [];
-    for (let columnIndex = 0; columnIndex < tiltedMatrix[0].length; columnIndex++) {
+    for (
+      let columnIndex = 0;
+      columnIndex < tiltedMatrix[0].length;
+      columnIndex++
+    ) {
       // Extract single column
       const column: string[][] = [];
       for (let rowIndex = 0; rowIndex < tiltedMatrix.length; rowIndex++) {
@@ -35,10 +39,10 @@ const second: second = (input) => {
         }
         column[rowIndex].push(tiltedMatrix[rowIndex][columnIndex]);
       }
-  
+
       // Move rocks in column to the north
       const newColumn = moveNorth(column);
-  
+
       // Add moved column to position rowIndex in tilted matrix
       for (let rowIndex = 0; rowIndex < tiltedMatrix.length; rowIndex++) {
         if (tiltedMatrixToNorth[rowIndex] === undefined) {
@@ -65,7 +69,11 @@ const second: second = (input) => {
 
     // Move the rocks to south
     const tiltedMatrixToSouth: string[][] = [];
-    for (let columnIndex = 0; columnIndex < tiltedMatrixToWest[0].length; columnIndex++) {
+    for (
+      let columnIndex = 0;
+      columnIndex < tiltedMatrixToWest[0].length;
+      columnIndex++
+    ) {
       // Extract single column
       const column: string[][] = [];
       for (let rowIndex = 0; rowIndex < tiltedMatrixToWest.length; rowIndex++) {
@@ -74,10 +82,10 @@ const second: second = (input) => {
         }
         column[rowIndex].push(tiltedMatrixToWest[rowIndex][columnIndex]);
       }
-  
+
       // Move rocks in column to the north
       const newColumn = moveSouth(column);
-  
+
       // Add moved column to position rowIndex in tilted matrix
       for (let rowIndex = 0; rowIndex < tiltedMatrixToWest.length; rowIndex++) {
         if (tiltedMatrixToSouth[rowIndex] === undefined) {

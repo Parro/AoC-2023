@@ -172,11 +172,11 @@ describe('Day 3 adjacentIsSymbol tests', () => {
     const y = 0;
     const checkFunction = (matrixValue: string, x: number, y: number) =>
       x === 3 && y == 1;
-  
+
     const expectedOutput = true;
-  
+
     const output = adjacentIsSymbol({ matrix, x, y, checkFunction });
-  
+
     assert.strictEqual(output, expectedOutput);
   });
 
@@ -197,11 +197,11 @@ describe('Day 3 adjacentIsSymbol tests', () => {
     const y = 2;
     const checkFunction = (matrixValue: string, x: number, y: number) =>
       x === 4 && y == 4;
-  
+
     const expectedOutput = false;
-  
+
     const output = adjacentIsSymbol({ matrix, x, y, checkFunction });
-  
+
     assert.strictEqual(output, expectedOutput);
   });
 });

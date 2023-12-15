@@ -12,7 +12,7 @@ describe('Day 2 second exercise tests', () => {
     Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`;
 
     const expectedOutput = 2286;
- 
+
     const output = second(input);
 
     assert.strictEqual(output, expectedOutput);
